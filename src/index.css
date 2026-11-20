@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  --color-paper: #faf9f6;
+  --color-ink: #1c1c1a;
+  --color-muted: #74716a;
+  --color-line: #e5e1d8;
+  --color-accent: #3f5648;
+  --color-danger: #8a3b2e;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+  }
+
+  ::selection {
+    background: #dedbd2;
+  }
+
+  input,
+  button {
+    font: inherit;
+  }
+}
