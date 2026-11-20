@@ -47,7 +47,7 @@ Search is client-side over the active tab; the whole table is fetched. Fine for 
 
 ## Deployment
 
-Static SPA hosted on Cloudflare Pages: build `npm run build`, output `dist`, Node 22, with `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` set in the dashboard. `public/_redirects` provides the SPA fallback for `/admin` routes; keep it when changing hosts.
+Static SPA hosted on Cloudflare Workers static assets: build `npm run build`, output `dist`, Node 22, with `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` set in the dashboard. Cloudflare's Vite setup uses `not_found_handling: "single-page-application"` for `/admin` routes. Do not add a catch-all `_redirects` rule (`/* /index.html 200`); Cloudflare rejects it as an infinite loop. Other hosts may still need an SPA fallback.
 
 ## Supabase
 

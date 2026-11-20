@@ -91,7 +91,8 @@ session.
 
 ## Deploying
 
-The app is a static site. Cloudflare Pages is the recommended free host.
+The app is a static site. Cloudflare Workers static assets (via the
+`wrangler deploy` setup) is the recommended free host.
 
 | Setting | Value |
 | --- | --- |
@@ -100,8 +101,12 @@ The app is a static site. Cloudflare Pages is the recommended free host.
 | Node version | `22` |
 
 Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` as environment
-variables in the hosting dashboard. `public/_redirects` makes direct links such
-as `/admin` load the app correctly. Without it, those links return a 404 page.
+variables in the hosting dashboard.
+
+Cloudflare's Vite setup already enables SPA fallback through
+`not_found_handling: "single-page-application"`, so direct links such as
+`/admin` work. Do not add a catch-all `_redirects` rule like
+`/* /index.html 200`; Cloudflare rejects it with an infinite-loop error.
 
 After you deploy, set the Supabase **Authentication → URL Configuration** site
 URL to your new domain.
